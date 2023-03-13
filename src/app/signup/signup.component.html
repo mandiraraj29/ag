@@ -1,0 +1,31 @@
+<div class="container">
+    <form [formGroup]="signUp" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="name"> User Name</label>
+        <input type="text" id="name" class="form-control" formControlName="name"
+        name="name">
+<div class="alert alert-danger" *ngIf="signUp.controls['name'].errors">
+   <p *ngIf="signUp.controls['name'].errors?.['required']"> this field is required</p>
+   <p *ngIf="signUp.controls['name'].errors?.['minlength']"> this field is required with minimum 2 char</p>
+   <p *ngIf="signUp.controls['name'].errors?.['maxlength']"> this field is required with maximum 10 char</p>
+</div>
+
+      </div>
+      <div class="form-group">
+        <label for="pass">Pass</label>
+        <input type="text" id="pass" class="form-control"  name="pass" formControlName="pass"  >
+      </div>
+      <div class="form-group">
+        <label for="cPass">cPass</label>
+        <input type="text" id="cPass" class="form-control" formControlName="cPass"  >
+      </div>
+      
+      <div class="form-group">
+        <button class="btn btn-primary"> submit</button>
+      </div>
+      </form>
+  </div>
+  
+  
+  
+  

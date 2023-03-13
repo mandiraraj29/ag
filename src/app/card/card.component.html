@@ -1,0 +1,20 @@
+<div class="col-md-3" *ngFor=" let shoe of shoes">
+    <div class="card">
+    
+        <div class="card-img-top">
+            <img src="../assets/shoes/{{shoe.image}}" alt="id">
+        </div>
+        <div class="card-body">
+          <p>  description: {{shoe.description}}</p>
+            <p> price : {{shoe.price}}</p>
+        </div>
+        <div class="card-footer text-center">
+            {{shoe.name}}
+        </div>
+    </div>
+</div>
+
+
+
+
+
