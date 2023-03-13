@@ -1,0 +1,101 @@
+login componenet.ts
+
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  title = 'directives-app';
+  userName: string='';
+  password: string='';
+  loginSuccess = false;
+  loginFailed = false;
+  login() {
+    this.loginFailed = this.loginSuccess = false;
+    if (this.userName == "admin" && this.password == "admin@123") {
+      this.loginSuccess = true
+    } else {
+      this.loginFailed = true;
+    }
+  }
+}
+
+
+
+login component.html
+
+<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+      <div class="card shadow" *ngIf="!loginSuccess && ! loginFailed">
+        <div class="card-header text-center">
+          <h3 style="font-family: cursive;">Login</h3>
+        </div>
+        <form class="ml-3 mr-3 mb-3">
+          <div class="form-group">
+            <label for="userName">User Name</label>
+            <input class="form-control" type="text" name="userName" [(ngModel)]="userName">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" [(ngModel)]="password">
+          </div>
+          <button type="submit" class="btn btn-outline-success" (click)="login()">Login</button>
+        </form>
+      </div>
+      <div *ngIf="loginFailed" class="text-center">
+        <img src="loginfailed.png" alt="login failed">
+        <h4 style="font-family: cursive;">Invalid Credentials</h4>
+      </div>
+      <div *ngIf="loginSuccess" class="text-center">
+        <img src="loginsuccess.png" alt="login successful">
+        <h4 style="font-family: cursive;">Welcome {{userName}}!!</h4>
+      </div>
+      <div *ngIf="loginSuccess || loginFailed" class="text-center">
+        <button class="btn btn-outline-warning" (click)="loginSuccess=loginFailed=false">Go Back</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+login component.html
+
+​<div class="container-fluid">
+  <div class="row mt-5">
+    <div class="col-md-6 offset-md-3">
+      <div class="card shadow" *ngIf="!loginSuccess && !loginFailed; else messages">
+        <div class="card-header text-center">
+          <h3 style="font-family: cursive;">Login</h3>
+        </div>
+        <form class="ml-3 mr-3 mb-3">
+          <div class="form-group">
+            <label for="userName">User Name</label>
+            <input class="form-control" type="text" name="userName" [(ngModel)]="userName">
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input class="form-control" type="password" name="password" [(ngModel)]="password">
+          </div>
+          <button type="submit" class="btn btn-outline-success" (click)="login()">Login</button>
+        </form>
+      </div>
+      <ng-template #messages>
+        <div class="text-center">
+          <ng-container *ngIf="loginFailed">
+            <img src="loginfailed.png" alt="login failed">
+            <h4 style="font-family: cursive;">Invalid Credentials</h4>
+          </ng-container>
+          <ng-container *ngIf="loginSuccess">
+            <img src="loginsuccess.png" alt="login successful">
+            <h4 style="font-family: cursive;">Welcome {{userName}}!!</h4>
+          </ng-container>
+          <button class="btn btn-outline-warning" (click)="loginSuccess=loginFailed=false">Go Back</button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
